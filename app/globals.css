@@ -126,6 +126,16 @@ button.btn-glow:hover {
   -webkit-clip-path: url(#service-feature-clip);
 }
 
+.cms-video-shape {
+  clip-path: url(#cms-video-clip);
+  -webkit-clip-path: url(#cms-video-clip);
+}
+
+.work-card-shape {
+  clip-path: url(#work-card-clip);
+  -webkit-clip-path: url(#work-card-clip);
+}
+
 .service-thumb {
   border-radius: 999px 28px 28px 999px;
 }

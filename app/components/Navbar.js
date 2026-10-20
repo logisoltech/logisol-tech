@@ -41,7 +41,8 @@ export default function Navbar() {
                 ? pathname === "/"
                 : link.href.startsWith("/#")
                   ? false
-                  : pathname === link.href;
+                  : pathname === link.href ||
+                    pathname.startsWith(`${link.href}/`);
 
             return (
               <li key={link.label}>

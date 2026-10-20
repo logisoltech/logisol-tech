@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import ServicesCurve from "./ServicesCurve";
 
@@ -7,21 +8,25 @@ const services = [
     num: "02",
     title: "Mobile Development",
     image: "/custom-web.jpg",
+    href: "/services/mobile-app-development",
   },
   {
     num: "03",
     title: "Digital Marketing",
     image: "/custom-web.jpg",
+    href: "/services/digital-marketing",
   },
   {
     num: "04",
     title: "Graphic Design",
     image: "/custom-web.jpg",
+    href: "/services/graphic-design",
   },
   {
     num: "05",
     title: "Video Editing",
     image: "/custom-web.jpg",
+    href: "/services/video-editing",
   },
 ];
 
@@ -78,21 +83,21 @@ export default function Services() {
                   className="pointer-events-none absolute -inset-5 rounded-full bg-[#3b82f6]/30 blur-2xl"
                   aria-hidden="true"
                 />
-                <a
-                  href="#services-list"
+                <Link
+                  href="/services/custom-web-development"
                   className="btn-glow relative inline-flex items-center gap-2 rounded-full px-6 py-3 text-[13px] font-semibold text-white sm:px-7 sm:text-sm"
                   style={{
                     background:
                       "linear-gradient(90deg, #3b82f6 0%, #2563eb 100%)",
                   }}
                 >
-                  See Our Services
+                  View Details
                   <ArrowRight
                     className="size-3.5"
                     strokeWidth={1.75}
                     aria-hidden="true"
                   />
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -123,8 +128,8 @@ export default function Services() {
               key={service.title}
               className="group border-t border-white/5 py-7 first:border-t-0 sm:py-9"
             >
-              <a
-                href="#contact"
+              <Link
+                href={service.href}
                 className="flex items-center justify-between gap-6 sm:gap-10"
               >
                 <div className="flex min-w-0 items-baseline gap-4 sm:gap-6 md:gap-10">
@@ -145,7 +150,7 @@ export default function Services() {
                     className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
-              </a>
+              </Link>
             </li>
           ))}
         </ul>

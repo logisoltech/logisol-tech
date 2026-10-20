@@ -1,26 +1,29 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { ArrowUpRight } from "lucide-react";
 import { useState } from "react";
 
 const links = [
-  { label: "Home", href: "#" },
-  { label: "About Us", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Projects", href: "#projects" },
-  { label: "Blog", href: "#blog" },
-  { label: "Our Pricing", href: "#pricing" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/" },
+  { label: "About Us", href: "/about" },
+  { label: "Services", href: "/services" },
+  { label: "Projects", href: "/projects" },
+  { label: "Blog", href: "/blog" },
+  { label: "Our Pricing", href: "/pricing" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <header className="relative z-50 w-full px-5 pt-5 sm:px-8 lg:px-12">
       <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4">
-        <a href="#" className="relative shrink-0" aria-label="Glonect home">
+        <Link href="/" className="relative shrink-0" aria-label="Glonect home">
           <Image
             src="/glonect-logo-nav.png"
             alt="Glonect"
@@ -29,24 +32,37 @@ export default function Navbar() {
             priority
             className="h-8 w-auto mix-blend-screen sm:h-9"
           />
-        </a>
+        </Link>
 
         <ul className="hidden items-center gap-6 xl:gap-8 lg:flex">
-          {links.map((link) => (
-            <li key={link.label}>
-              <a
-                href={link.href}
-                className="text-[15px] font-medium text-white/90 transition-colors hover:text-white"
-              >
-                {link.label}
-              </a>
-            </li>
-          ))}
+          {links.map((link) => {
+            const isActive =
+              link.href === "/"
+                ? pathname === "/"
+                : link.href.startsWith("/#")
+                  ? false
+                  : pathname === link.href;
+
+            return (
+              <li key={link.label}>
+                <Link
+                  href={link.href}
+                  className={`text-[15px] font-medium transition-colors ${
+                    isActive
+                      ? "text-white"
+                      : "text-white/70 hover:text-white"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
 
         <div className="flex items-center gap-3">
-          <a
-            href="#contact"
+          <Link
+            href="/#contact"
             className="btn-glow hidden items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold text-white sm:inline-flex"
             style={{
               background: "linear-gradient(90deg, #3b82f6 0%, #2563eb 100%)",
@@ -54,7 +70,7 @@ export default function Navbar() {
           >
             Let&apos;s talk
             <ArrowUpRight className="size-4" aria-hidden="true" />
-          </a>
+          </Link>
 
           <button
             type="button"
@@ -90,18 +106,18 @@ export default function Navbar() {
           <ul className="flex flex-col gap-3">
             {links.map((link) => (
               <li key={link.label}>
-                <a
+                <Link
                   href={link.href}
                   className="block rounded-lg px-3 py-2 text-sm font-medium text-white/90 hover:bg-white/5"
                   onClick={() => setOpen(false)}
                 >
                   {link.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
-          <a
-            href="#contact"
+          <Link
+            href="/#contact"
             className="btn-glow mt-4 flex w-full items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold text-white"
             style={{
               background: "linear-gradient(90deg, #3b82f6 0%, #2563eb 100%)",
@@ -110,7 +126,7 @@ export default function Navbar() {
           >
             Let&apos;s talk
             <ArrowUpRight className="size-4" aria-hidden="true" />
-          </a>
+          </Link>
         </div>
       )}
     </header>

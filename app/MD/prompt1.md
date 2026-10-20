@@ -1,0 +1,1 @@
+this is the design in the first image and this is waht i have in the 2nd image fix that so it matches the design

@@ -131,13 +131,31 @@ button.btn-glow:hover {
   -webkit-clip-path: url(#cms-video-clip);
 }
 
-.work-card-shape {
-  clip-path: url(#work-card-clip);
-  -webkit-clip-path: url(#work-card-clip);
+.case-media-shape {
+  clip-path: url(#case-media-clip);
+  -webkit-clip-path: url(#case-media-clip);
+}
+
+.testimonial-card-shape {
+  clip-path: url(#testimonial-card-clip);
+  -webkit-clip-path: url(#testimonial-card-clip);
 }
 
 .service-thumb {
   border-radius: 999px 28px 28px 999px;
+}
+
+.about-approach-text {
+  background-image: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #f1f3f8 45%,
+    #9aa0b0 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
 }
 
 .animate-fade-up {

@@ -18,13 +18,15 @@ const projects = [
   { title: "Carintel", image: "/custom-web.jpg", category: "Web Development" },
 ];
 
-export default function SelectedWork() {
+export default function SelectedWork({ showCms = true }) {
   const [active, setActive] = useState("Web Development");
 
   return (
     <section
       id="projects"
-      className="relative overflow-hidden bg-[#05070a] px-6 pb-24 pt-8 sm:px-10 sm:pb-32 sm:pt-10 lg:px-16 xl:px-24"
+      className={`relative overflow-hidden bg-[#05070a] px-6 pb-24 sm:px-10 sm:pb-32 lg:px-16 xl:px-24 ${
+        showCms ? "pt-8 sm:pt-10" : "pt-16 sm:pt-24"
+      }`}
     >
       {/* Side lights — tall, strong, mirrored L/R; covers CMS + work */}
       <div
@@ -51,14 +53,12 @@ export default function SelectedWork() {
           <clipPath id="cms-video-clip" clipPathUnits="objectBoundingBox">
             <path d="M0.06,0 L0.78,0 C0.84,0 0.88,0.04 0.88,0.08 L0.88,0.1 C0.88,0.13 0.9,0.14 0.93,0.14 L0.96,0.14 C0.99,0.14 1,0.18 1,0.22 L1,0.78 C1,0.82 0.99,0.86 0.96,0.86 L0.58,0.86 C0.54,0.86 0.52,0.88 0.52,0.92 L0.52,0.94 C0.52,0.98 0.48,1 0.44,1 L0.06,1 C0.02,1 0,0.96 0,0.92 L0,0.08 C0,0.04 0.02,0 0.06,0 Z" />
           </clipPath>
-          <clipPath id="work-card-clip" clipPathUnits="objectBoundingBox">
-            <path d="M0.08,0 L0.92,0 C0.97,0 1,0.03 1,0.08 L1,0.88 C1,0.94 0.96,0.98 0.9,1 L0.35,0.92 C0.12,0.88 0,0.82 0,0.72 L0,0.08 C0,0.03 0.03,0 0.08,0 Z" />
-          </clipPath>
         </defs>
       </svg>
 
       <div className="relative z-10 mx-auto max-w-[1280px]">
         {/* CMS experience */}
+        {showCms && (
         <div
           id="demo"
           className="flex flex-col items-start gap-10 rounded-[2rem] bg-[#0c0e14] px-8 py-12 ring-1 ring-white/[0.04] sm:rounded-[2.5rem] sm:px-12 sm:py-16 lg:flex-row lg:items-center lg:justify-between lg:gap-16 lg:rounded-[3rem] lg:px-16 lg:py-20 xl:px-20"
@@ -84,9 +84,10 @@ export default function SelectedWork() {
             </div>
           </button>
         </div>
+        )}
 
         {/* Selected work */}
-        <div className="mt-20 sm:mt-28">
+        <div className={showCms ? "mt-20 sm:mt-28" : ""}>
           <h2 className="text-left text-[clamp(2rem,5vw,3.5rem)] font-extrabold tracking-tight">
             <span className="text-white/90">Our </span>
             <span className="text-[#3b82f6]">Selected Work</span>
@@ -137,8 +138,8 @@ export default function SelectedWork() {
                 href="#contact"
                 className="group relative block"
               >
-                <div className="pointer-events-none absolute inset-x-6 -bottom-4 h-16 rounded-full bg-white/8 blur-2xl transition-opacity group-hover:bg-white/14" />
-                <div className="work-card-shape relative aspect-[4/5] overflow-hidden bg-white/95 shadow-[0_16px_48px_rgba(0,0,0,0.45)]">
+                <div className="pointer-events-none absolute inset-x-4 -bottom-3 h-14 rounded-full bg-white/12 blur-2xl transition-opacity group-hover:bg-white/20" />
+                <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-white shadow-[0_20px_60px_rgba(0,0,0,0.4)] sm:rounded-[2.25rem]">
                   <Image
                     src={project.image}
                     alt={`${project.title} project preview`}
